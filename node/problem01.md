@@ -1,8 +1,8 @@
-#### problem 1
+
 >Error: EXDEV, cross-device link not permitted (不允许跨分区重命名)
 
 在使用node上传文件并进行重命名时报的错，代码如下：
-
+```
 	function upload(response, request) {
 		var form = new formidable.IncomingForm();
 		form.parse(request, function(error, fields, files) {
@@ -12,11 +12,12 @@
 			...
 		});
 	}
+```
 
 在网上找到2种解决方法：
 
 ###### 方法1：
-
+```
 	function upload(response, request) {
 		var form = new formidable.IncomingForm();
 		form.uploadDir = 'tmp'; //添加一个临时路径
@@ -26,9 +27,10 @@
 			...
 		});
 	}
+```
 
 ###### 方法2：
-
+```
 	function upload(response, request) {
 		var form = new formidable.IncomingForm();
 		form.parse(request, function(error, fields, files) {
@@ -42,3 +44,4 @@
 			...
 		});
 	}
+```
